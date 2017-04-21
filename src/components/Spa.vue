@@ -40,10 +40,14 @@
       </el-col>
     </el-row>
     <el-row :gutter="20">
-      <el-col :span="8"><div class="grid-content bg-purple"></div></el-col>
-      <el-col :span="8"><div class="grid-content bg-purple"></div></el-col>
-      <el-col :span="4"><div class="grid-content bg-purple"></div></el-col>
-      <el-col :span="4"><div class="grid-content bg-purple"></div></el-col>
+      <el-col :span="12">
+        <div class="grid-content">
+          <div class="box-content">
+            <p><p><p><p><p>p</p></p></p></p></p>
+          </div>
+        </div>
+      </el-col>
+      <el-col :span="12"><div class="grid-content bg-purple"></div></el-col>
     </el-row>
     <el-row :gutter="20">
       <el-col :span="4"><div class="grid-content bg-purple"></div></el-col>
@@ -175,6 +179,13 @@ export default {
       .row-margin-r{
         margin-right: 15px;
       }
+      .box-content{
+        border-style: solid;
+        border-width: 1px;
+        border-radius: 4px;
+        border-color: #E5E9F2;
+      }
+
       .box {
           width: 400px;
 
