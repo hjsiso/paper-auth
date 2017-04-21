@@ -10,7 +10,9 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "element-ui": "^1.2.9",
     "firebase": "^3.7.6",
+    "firebaseui": "^1.0.1",
     "vue": "^2.2.2",
     "vue-router": "^2.3.0",
     "vuefire": "^1.4.2"

@@ -11,7 +11,7 @@
       <el-col :span="8"><div class="grid-content align-text-c color-extra-light-silver "><i class="el-icon-menu"></i></div></el-col>
       <el-col :span="8">
         <div class="grid-content-r small-text align-text-r row-margin-r">
-          <el-badge is-dot class="item">
+          <el-badge :is-dot="msg" class="item">
             <el-button class="share-button" icon="message" :plain="true" type="info" size="mini"></el-button>
           </el-badge>
           Hello, {{user_name}}
@@ -20,7 +20,7 @@
     </el-row>
     <el-row :gutter="20">
       <el-col :span="8">
-        <div class="grid-content-l tittle-text row-margin-l">{{user_name}}<div class="body-small-text color-extra-light-silver"><strong>Student:</strong> {{current_student.student_name}}</div></div></el-col>
+        <div class="grid-content-l tittle-text row-margin-l">{{user_name}}<div class="body-small-text color-extra-light-silver">Student: {{current_student.student_name}}</div></div></el-col>
       <el-col :span="8"><div class="grid-content"></div></el-col>
       <el-col :span="8">
         <div class="grid-content-r align-text-r row-margin-r">
@@ -42,19 +42,22 @@
     <el-row :gutter="20">
       <el-col :span="12">
         <div class="grid-content">
-          <div class="box-content">
-            <p><p><p><p><p>p</p></p></p></p></p>
+          <div class="box-content row-margin-l">
+            p<br/>p<br/>p<br/>p<br/>p<br/>p<br/>p<br/>p<br/>p<br/>p<br/>p<br/>p<br/>
           </div>
         </div>
       </el-col>
-      <el-col :span="12"><div class="grid-content bg-purple"></div></el-col>
+      <el-col :span="12">
+        <div class="grid-content">
+          <div class="box-content row-margin-r">
+           p
+          </div>
+          <div class="box-content row-margin-r">
+           p
+          </div>
+        </div>
+      </el-col>
     </el-row>
-    <el-row :gutter="20">
-      <el-col :span="4"><div class="grid-content bg-purple"></div></el-col>
-      <el-col :span="16"><div class="grid-content bg-purple"></div></el-col>
-      <el-col :span="4"><div class="grid-content bg-purple"></div></el-col>
-    </el-row>
-
   </div>
 </template>
 
@@ -66,7 +69,7 @@ export default {
   name: 'spa',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App',
+      msg: true,
       user_name: 'Hector Siso',
       current_student: {
         student_name: 'Marcela Siso'
@@ -75,7 +78,8 @@ export default {
         {text: "Information"},
         {text: "Tasks"},
         {text: "Documents"},
-        {text: "Notes"}
+        {text: "Notes"},
+        {text: "Messages"}
       ]
       }
   },
@@ -94,8 +98,11 @@ export default {
 
 
     <style>
+      .el-tabs__header {
+        border-bottom: 1px solid #EFF2F7;
+      }
       .el-row {
-        margin-bottom: 15px;
+        margin-bottom: 10px;
         &:last-child {
           margin-bottom: 0;
         }
@@ -183,7 +190,14 @@ export default {
         border-style: solid;
         border-width: 1px;
         border-radius: 4px;
-        border-color: #E5E9F2;
+        border-color: #EFF2F7;
+        margin-bottom: 20px;
+        align-content: center;
+        text-align: center;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        padding-left: 15px;
+        padding-right: 5px;
       }
 
       .box {
