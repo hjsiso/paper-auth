@@ -3,9 +3,24 @@
     <el-row :gutter="20">
       <el-col :span="8">
         <div class="grid-content-l color-extra-light-silver row-margin-l">
-          <el-tooltip effect="light" content="Search student" placement="bottom-end">
-            <i class="el-icon-search"></i>
-          </el-tooltip>
+          <el-popover
+            ref="popoverSearch"
+            placement="right"
+            width="160"
+            v-model="visible2">
+              <p class="popover-text">
+                <el-input
+                  placeholder="Search"
+                  icon="search"
+                  v-model="searchstr">
+                </el-input>
+              </p>
+            <div style="text-align: right; margin: 0">
+              <el-button size="mini" type="text" @click="visible2 = false">cancel</el-button>
+              <el-button type="primary" size="mini" @click="visible2 = false">search</el-button>
+            </div>
+          </el-popover>
+          <i class="el-icon-search" v-popover:popoverSearch></i>
         </div>
       </el-col>
       <el-col :span="8"><div class="grid-content align-text-c color-extra-light-silver "><i class="el-icon-menu"></i></div></el-col>
@@ -24,7 +39,7 @@
       <el-col :span="8"><div class="grid-content"></div></el-col>
       <el-col :span="8">
         <div class="grid-content-r align-text-r row-margin-r">
-          <el-button  :plain="true" type="warning" size="small">Settings <i class="el-icon-setting"></i></el-button>
+          <el-button  :plain="true" type="info" size="small">Settings <i class="el-icon-setting"></i></el-button>
           <el-button  type="info" size="small" @click="logout">Logout <i class="el-icon-circle-close"></i></el-button>
         </div>
       </el-col>
@@ -43,7 +58,9 @@
       <el-col :span="12">
         <div class="grid-content">
           <div class="box-content row-margin-l">
-            p<br/>p<br/>p<br/>p<br/>p<br/>p<br/>p<br/>p<br/>p<br/>p<br/>p<br/>p<br/>
+            <div class="">
+              <pre>{{ $data }}</pre>
+            </div>
           </div>
         </div>
       </el-col>
@@ -69,6 +86,8 @@ export default {
   name: 'spa',
   data () {
     return {
+      searchstr: '',
+      visible2: false,
       msg: true,
       user_name: 'Hector Siso',
       current_student: {
@@ -78,8 +97,7 @@ export default {
         {text: "Information"},
         {text: "Tasks"},
         {text: "Documents"},
-        {text: "Notes"},
-        {text: "Messages"}
+        {text: "Notes"}
       ]
       }
   },
@@ -98,9 +116,6 @@ export default {
 
 
     <style>
-      .el-tabs__header {
-        border-bottom: 1px solid #EFF2F7;
-      }
       .el-row {
         margin-bottom: 10px;
         &:last-child {
@@ -189,7 +204,7 @@ export default {
       .box-content{
         border-style: solid;
         border-width: 1px;
-        border-radius: 4px;
+        border-radius: 3px;
         border-color: #EFF2F7;
         margin-bottom: 20px;
         align-content: center;
@@ -199,10 +214,11 @@ export default {
         padding-left: 15px;
         padding-right: 5px;
       }
-
+      .popover-text{
+          font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+      }
       .box {
           width: 400px;
-
           .top {
             text-align: center;
           }
