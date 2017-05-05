@@ -2,8 +2,8 @@
   <div id="app">
     <!-- <img src="./assets/logo.png"> -->
     <!-- <router-link to="/items">Go to Foo</router-link> -->
+
     <div class="columns" v-show="!user.uid">
-      <div class="column">
         <section class="hero is-primary">
           <div class="hero-body">
             <div class="container">
@@ -16,8 +16,6 @@
             </div>
           </div>
         </section>
-      </div>
-
     </div>
     <router-view v-show="user.uid"></router-view>
   </div>
@@ -44,8 +42,16 @@ export default {
 </script>
 
 <style>
+body {
+  font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",Arial,sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+  margin-top: 15px;
+  width: 99%;
+}
 #app {
-  font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+  font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",Arial,sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;

@@ -17,17 +17,17 @@
               </p>
             <div style="text-align: right; margin: 0">
               <el-button size="mini" type="text" @click="viewSearch = false">cancel</el-button>
-              <el-button type="primary" size="mini" @click="viewSearch = false">search</el-button>
+              <el-button type="primary" size="mini" @click="buscar">search</el-button>
             </div>
           </el-popover>
           <i class="el-icon-search" v-popover:popoverSearch></i>
         </div>
       </el-col>
-      <el-col :span="8"><div class="grid-content align-text-c color-extra-light-silver "><i class="el-icon-menu"></i></div></el-col>
+      <el-col :span="8"><div class="grid-content align-text-c color-extra-light-silver "><i class="el-icon-menu" @click="returnHome()"></i></div></el-col>
       <el-col :span="8">
         <div class="grid-content-r small-text align-text-r row-margin-r">
           <el-badge :is-dot="viewMsgInbox" class="item">
-            <el-button class="share-button" icon="message" :plain="true" type="info" size="mini" @click=''></el-button>
+            <el-button class="share-button" icon="message" :plain="true" type="info" size="mini" @click='readNotes'></el-button>
           </el-badge>
           Hello, {{userName}}
         </div>
@@ -35,7 +35,7 @@
     </el-row>
     <el-row :gutter="20">
       <el-col :span="8">
-        <div class="grid-content-l tittle-text row-margin-l">{{userName}}<div class="body-small-text color-extra-light-silver">Student: {{currentStudent.name}}</div></div></el-col>
+        <div class="grid-content-l tittle-text row-margin-l">{{userName}}<div class="body-small-text color-extra-light-silver">Student: {{studentFullName}}</div></div></el-col>
       <el-col :span="8"><div class="grid-content"></div></el-col>
       <el-col :span="8">
         <div class="grid-content-r align-text-r row-margin-r">
@@ -51,22 +51,39 @@
 
 export default {
   name: 'top-bar',
-  props: ['visibleSearch','searchStr', 'msgInbox', 'userName', 'currentStudent'],
+  props: ['searchStr', 'msgInbox', 'userName', 'currentStudent'],
   data () {
     return {
+      viewSearch: false
     }
   },
   methods: {
-    logout: () => {
+    logout: function () {
       console.log('emitir evento logout de auth')
+      this.$emit('logout')
+    },
+    readNotes: function () {
+      console.log('emitir evento readnotes')
+      //$vm0.activeTab = 'Notes'
+      this.$emit('readnotes')
+    },
+    buscar: function () {
+      this.$router.push('/search');
+    },
+    returnHome: function () {
+      this.$router.push('/');
     }
   },
   computed: {
-    viewSearch: function() {
-      return this.visibleSearch
-    },
     viewMsgInbox: function() {
-      return this.msgInbox
+      if(this.msgInbox.length > 0){
+        return true
+      }else{
+        return false
+      }
+    },
+    studentFullName: function() {
+      return `${this.currentStudent.firstname} ${this.currentStudent.lastname}`
     }
   }
 }

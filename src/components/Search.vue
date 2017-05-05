@@ -1,19 +1,12 @@
 <template>
 <div class="spa">
-  <topbar v-on:readnotes="" v-on:logout="logoutAuth" search-str='' :msg-inbox='unreadNotes' user-name='Hector Siso' :current-student='currentStudent'></topbar>
+  <topbar v-on:readnotes="readNotes" v-on:logout="logoutAuth" search-str='' :msg-inbox='unreadNotes' user-name='Hector Siso' :current-student='currentStudent'></topbar>
   <el-row :gutter="20">
     <el-col :span="24">
-      <div>
-        <el-tabs v-model="activeTab">
-          <el-tab-pane label="" name="emty" disabled></el-tab-pane>
-          <el-tab-pane v-for="tab in tabs_options" :key="tab.id | uppercase" :label="tab.text | uppercase" value="" active-name="" :name="tab.text" />
-        </el-tabs>
-      </div>
+
     </el-col>
   </el-row>
-  <component v-bind:is="activeTab">
-    <!-- component changes when vm.currentView changes! -->
-  </component>
+
   <!--
     <el-row :gutter="20">
       <el-col :span="12">
@@ -42,31 +35,13 @@
 
 <script>
 import topbar from '@/components/TopBar'
-import Information from '@/components/Information'
-import Tasks from '@/components/Tasks'
-import Documents from '@/components/Documents'
-import Notes from '@/components/Notes'
 import auth from '../auth'
 
 export default {
-  name: 'spa',
+  name: 'search',
   data() {
     return {
-      activeTab: 'Information',
       msgInbox: false,
-      tabs_options: [{
-          text: "Information"
-        },
-        {
-          text: "Tasks"
-        },
-        {
-          text: "Documents"
-        },
-        {
-          text: "Notes"
-        }
-      ],
       notes: [{
           note: 'a',
           read: false
@@ -83,9 +58,6 @@ export default {
     }
   },
   computed: {
-    currentTab: function() {
-      return this.activeTab
-    },
     unreadNotes: function() {
       return this.notes.filter(function(note) {
         return note.read
@@ -131,15 +103,11 @@ export default {
     },
     readNotes: function() {
       console.log('evento readNotes')
-      this.activeTab = 'Notes';
+      //this.activeTab = 'Notes';
     }
   },
   components: {
-    topbar,
-    Information,
-    Tasks,
-    Documents,
-    Notes
+    topbar
   }
 }
 </script>
